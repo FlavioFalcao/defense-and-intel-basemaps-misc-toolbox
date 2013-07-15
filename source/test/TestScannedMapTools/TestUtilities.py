@@ -24,12 +24,9 @@ print currentPath
 geodatabasePath = os.path.normpath(os.path.join(currentPath, r"../../../data/ScannedMaps/Sample/"))
 sampleInputPath = os.path.normpath(os.path.join(currentPath, r"../../../data/ScannedMaps/Sample/SourceData/RPF"))
 
-
-
 toolboxesPath = os.path.normpath(os.path.join(currentPath, r"../../../toolboxes/")) 
 print toolboxesPath               
 
 inputGDB  = os.path.join(geodatabasePath, "ScannedMaps.gdb")
 
-
-toolbox = os.path.join(toolboxesPath, "ScannedMaps.tbx")
+toolbox = os.path.join(toolboxesPath, "ScannedMapsTools.tbx")

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<project name="DefenseAndIntelAnalysisToolboxTest" basedir="." default="run_all_tests">
+
+  <!-- templatehome = defense-and-intel-analysis-toolbox -->
+
+  <target name="run_all_tests" 
+    depends="TestImageryTools,TestScannedMapTools,TestTopographicBasemap">
+    <echo message="Running All Tests" />
+  </target>
+
+  <target name="TestImageryTools">
+    <echo message="Running: TestImageryTools" />
+   <ant dir="./TestImageryTools" target="run_all_tests" />
+    <echo message="Done Test: TestImageryTools" />
+  </target>
+
+  <target name="TestScannedMapTools">
+    <echo message="Running: TestScannedMapTools" />
+   <ant dir="./TestScannedMapTools" target="run_all_tests" />
+    <echo message="Done Test: TestScannedMapTools" />
+  </target>
+
+  <target name="TestTopographicBasemap">
+    <echo message="Running: TestTopographicBasemap" />
+   <ant dir="./TestTopographicBasemap" target="run_all_tests" />
+    <echo message="Done Test: TestTopographicBasemap" />
+  </target>
+
+</project>
