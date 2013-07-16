@@ -28,7 +28,7 @@ def RunTest():
         arcpy.AddMessage("Starting Test: CreateCADRGMosaicDataset")
 
         toolbox = TestUtilities.toolbox
-        arcpy.ImportToolbox(toolbox, "CreateCADRGAlias")
+        arcpy.ImportToolbox(toolbox, "DefenseScannedMaps")
         arcpy.env.overwriteOutput = True
         
         # Set environment settings
@@ -39,27 +39,22 @@ def RunTest():
                        
         webMercator = arcpy.SpatialReference(r"WGS 1984 Web Mercator (Auxiliary Sphere)")
            
+        inputName = "ScannedMaps_Test"
+        inputMosaicDatasetFullPath = os.path.join(TestUtilities.inputGDB, inputName)
+        
+        if arcpy.Exists(inputMosaicDatasetFullPath):
+            print "deleting: " + inputMosaicDatasetFullPath
+            arcpy.Delete_management(inputMosaicDatasetFullPath)
+               
         ########################################################3
         # Execute the Model under test: 
-        arcpy.CreateCADRGMosaicDataset_CreateCADRGAlias(TestUtilities.inputGDB, "ScannedMaps_Test", webMercator)  
+        arcpy.CreateCADRGMosaicDataset_DefenseScannedMaps(TestUtilities.inputGDB, inputName, webMercator)  
         ########################################################
-
-        inputMosaicDataset = os.path.join(TestUtilities.inputGDB, "ScannedMaps_Test")
          
         
-            # Check For Valid Input
-        objects2Check = []
-        objects2Check.extend([inputMosaicDataset, toolbox])
-        for object2Check in objects2Check :
-            desc = arcpy.Describe(object2Check)
-            if desc == None :
-                raise Exception("Bad Input")
-            else :
-                print "Valid Object: " + desc.Name
-                print "Success " + inputMosaicDataset + " was created" 
-            
-        inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDataset).getOutput(0)) 
-        print "Input FeatureClass: " + str(inputMosaicDataset)
+        # Check For Valid Input           
+        inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDatasetFullPath).getOutput(0)) 
+        print "Input FeatureClass: " + str(inputMosaicDatasetFullPath)
         print "Input Feature Count: " +  str(inputFeatureCount)
         
         if inputFeatureCount > 0 :

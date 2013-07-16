@@ -25,10 +25,10 @@ import TestUtilities
 
 def RunTest():
     try:
-        arcpy.AddMessage("Starting Test: CreateElevationMosaicDataset")
+        arcpy.AddMessage("Starting Test: TestCreateElevationMosaicDataset")
  
         toolbox = TestUtilities.toolbox
-        arcpy.ImportToolbox(toolbox, "CreateElevationAlias")
+        arcpy.ImportToolbox(toolbox, "DefenseTopo")
         arcpy.env.overwriteOutput = True
         
         # Set environment settings
@@ -36,29 +36,23 @@ def RunTest():
         print "Geodatabase path: " + str(TestUtilities.geodatabasePath)
         
         arcpy.env.overwriteOutput = True        
-
+           
+        inputName = "Elevation_Test"
+        inputMosaicDatasetFullPath = os.path.join(TestUtilities.inputGDB, inputName)
+        
+        if arcpy.Exists(inputMosaicDatasetFullPath):
+            print "deleting: " + inputMosaicDatasetFullPath
+            arcpy.Delete_management(inputMosaicDatasetFullPath)
            
         ########################################################3
         # Execute: 
-        arcpy.CreateDTEDMosaicDataset_CreateElevationAlias(TestUtilities.inputGDB, "Elevation_Test")  
+        arcpy.CreateDTEDMosaicDataset_DefenseTopo(TestUtilities.inputGDB, inputName)  
         ########################################################
 
-        inputMosaicDataset = os.path.join(TestUtilities.inputGDB, "Elevation_Test")
-        
-               
-            # Check For Valid Input
-        objects2Check = []
-        objects2Check.extend([inputMosaicDataset, toolbox])
-        for object2Check in objects2Check :
-            desc = arcpy.Describe(object2Check)
-            if desc == None :
-                raise Exception("Bad Input")
-            else :
-                print "Valid Object: " + desc.Name
-                print "Success " + inputMosaicDataset + " was created" 
+
             
-        inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDataset).getOutput(0)) 
-        print "Input FeatureClass: " + str(inputMosaicDataset)
+        inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDatasetFullPath).getOutput(0)) 
+        print "Input FeatureClass: " + str(inputMosaicDatasetFullPath)
         print "Input Feature Count: " +  str(inputFeatureCount)
         
         if inputFeatureCount > 0 :

@@ -29,21 +29,11 @@ def RunTest():
 
         
         toolbox = TestUtilities.toolbox
-        arcpy.ImportToolbox(toolbox, "addCADRGAlias")
+        arcpy.ImportToolbox(toolbox, "DefenseScannedMaps")
         arcpy.env.overwriteOutput = True
         
         inputMosaicDataset = os.path.join(TestUtilities.inputGDB, "ScannedMapsMisc_Test")
         print inputMosaicDataset
-
-        # Check For Valid Input
-        objects2Check = []
-        objects2Check.extend([inputMosaicDataset, toolbox])
-        for object2Check in objects2Check :
-            desc = arcpy.Describe(object2Check)
-            if desc == None :
-                raise Exception("Bad Input")
-            else :
-                print "Valid Object: " + desc.Name 
         
         # Set environment settings
         print "Running from: " + str(TestUtilities.currentPath)
@@ -54,7 +44,7 @@ def RunTest():
            
         ########################################################3
         # Execute: 
-        arcpy.AddMiscCADRGRastersToMosaicDataset_addCADRGAlias(inputMosaicDataset, TestUtilities.sampleInputPath)  
+        arcpy.AddMiscCADRGRastersToMosaicDataset_DefenseScannedMaps(inputMosaicDataset, TestUtilities.sampleInputPath)  
         ########################################################3
         
         inputFeatureCount2 = int(arcpy.GetCount_management(inputMosaicDataset).getOutput(0)) 

@@ -28,21 +28,11 @@ def RunTest():
         arcpy.AddMessage("Starting Test: Add CIB Rasters To Mosaic Dataset")
  
         toolbox = TestUtilities.toolbox
-        arcpy.ImportToolbox(toolbox, "addCIBAlias")
+        arcpy.ImportToolbox(toolbox, "DefenseImagery")
         arcpy.env.overwriteOutput = True
         
         inputMosaicDataset = os.path.join(TestUtilities.inputGDB, "Imagery_Test")
         print inputMosaicDataset
- 
-        # Check For Valid Input
-        objects2Check = []
-        objects2Check.extend([inputMosaicDataset, toolbox])
-        for object2Check in objects2Check :
-            desc = arcpy.Describe(object2Check)
-            if desc == None :
-                raise Exception("Bad Input")
-            else :
-                print "Valid Object: " + desc.Name 
         
         # Set environment settings
         print "Running from: " + str(TestUtilities.currentPath)
@@ -52,9 +42,10 @@ def RunTest():
            
         ########################################################3
         # Execute the Model under test: 
-        arcpy.AddCIBRastersToMosaicDataset_addCIBAlias(inputMosaicDataset, TestUtilities.sampleInputPath)  
+        arcpy.AddCIBRastersToMosaicDataset_DefenseImagery(inputMosaicDataset, TestUtilities.sampleInputPath)  
         ########################################################3
         
+        #Check Output
         inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDataset).getOutput(0)) 
         print "Input FeatureClass: " + str(inputMosaicDataset)
         print "Input Feature Count: " +  str(inputFeatureCount)

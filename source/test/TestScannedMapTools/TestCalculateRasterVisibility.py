@@ -30,23 +30,13 @@ def RunTest():
         inputMosaicDataset =  os.path.join(TestUtilities.inputGDB, "ScannedMaps_Test")
         toolbox = TestUtilities.toolbox
         
-        # Check For Valid Input
-        objects2Check = []
-        objects2Check.extend([inputMosaicDataset, toolbox])
-        for object2Check in objects2Check :
-            desc = arcpy.Describe(object2Check)
-            if desc == None :
-                raise Exception("Bad Input")
-            else :
-                print "Valid Object: " + desc.Name 
-        
         # Set environment settings
         print "Running from: " + str(TestUtilities.currentPath)
         print "Geodatabase path: " + str(TestUtilities.geodatabasePath)
         
         arcpy.env.overwriteOutput = True
       
-        arcpy.ImportToolbox(toolbox, "CalculateRasterVisAlias")
+        arcpy.ImportToolbox(toolbox, "DefenseScannedMaps")
     
         inputFeatureCount = int(arcpy.GetCount_management(inputMosaicDataset).getOutput(0)) 
         print "Input FeatureClass: " + str(inputMosaicDataset)
@@ -58,28 +48,20 @@ def RunTest():
            
         ########################################################
         # Execute the Model under test:   
-        arcpy.CalculateRasterVisibility_CalculateRasterVisAlias(inputMosaicDataset, 10)
+        arcpy.CalculateRasterVisibility_DefenseScannedMaps(inputMosaicDataset, 10)
         ########################################################
 
         
         # Verify the results  
-        minPS = "MinPS"
-        maxPS = "MaxPS"
-                
-        # Create a search cursor using an SQL expression
-        #
+
         min = arcpy.da.SearchCursor(inputMosaicDataset, ("MinPS"))
         for row in min:
-            # Print the name of the residential road
-            #
             if( row[0] < 0) :
                 raise Exception("Test Failed")
             
         max = arcpy.da.SearchCursor(inputMosaicDataset, ("MaxPS"))
         
         for row in max:
-            # Print the name of the residential road
-            #
             if( row[0] < 0) :
                 raise Exception("Test Failed")
         
