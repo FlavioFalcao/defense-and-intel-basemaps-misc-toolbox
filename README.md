@@ -3,7 +3,7 @@ defense-and-intel-basemaps-misc-toolbox
 
 A set of tools and models for use in ArcGIS Desktop. These tools provide specialized processing and workflows for defense and intelligence mapping tasks.
 
-![Image of Defense and Intel Analysis Toolbox](Screenshot.jpg)
+![Image of Defense and Intel Analysis Toolbox](Screenshot.JPG)
 
 ## Features
 
