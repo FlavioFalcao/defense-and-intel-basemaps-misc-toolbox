@@ -10,6 +10,7 @@ A set of tools and models for use in ArcGIS Desktop. These tools provide special
 * Tools for creating mosaic datasets
 * Tools for adding rasters to mosaic datasets
 * Tools for calculating raster visibility
+* Geonames Tools Toolbox
 
 ## <a id="Requirements"></a>Requirements
 
