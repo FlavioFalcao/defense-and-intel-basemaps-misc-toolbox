@@ -57,7 +57,7 @@ A set of tools and models for use in ArcGIS Desktop. These tools provide special
 
 ## Contributing
 
-* Anyone and everyone is welcome to contribute.
+Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/esri/contributing).
 
 ## Licensing
 
@@ -78,5 +78,5 @@ limitations under the License.
 A copy of the license is available in the repository's
 [license.txt](license.txt) file.
 
-[](Esri Tags: ArcGIS Defense and Intelligence)
+[](Esri Tags: ArcGIS Defense and Intelligence Military)
 [](Esri Language: Python)
