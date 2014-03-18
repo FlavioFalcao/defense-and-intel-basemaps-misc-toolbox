@@ -1,6 +1,14 @@
 defense-and-intel-basemaps-misc-toolbox 
 =================================
 
+**IMPORTANT NOTE: THE TOOLS IN THIS TOOLBOX HAVE BEEN MOVED. THIS REPO IS NOW DEPRECATED AND WILL NOT BE MAINTAINED**
+
+Please use the solutions-geoprocessing-toolbox repo:
+
+[https://github.com/Esri/solutions-geoprocessing-toolbox](https://github.com/Esri/solutions-geoprocessing-toolbox)
+
+=================================
+
 A set of tools and models for use in ArcGIS Desktop. These tools provide specialized processing and workflows for defense and intelligence mapping tasks.
 
 ![Image of Defense and Intel Analysis Toolbox](Screenshot.JPG)
